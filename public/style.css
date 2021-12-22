@@ -1,0 +1,173 @@
+body{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: url(pexels-henry-&-co-1939485.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+ul {
+  list-style-type: none;
+}
+
+.message{
+  color: red;
+  text-align: center;
+}
+
+
+.menu a:hover{
+  opacity: 50%;
+}
+
+
+.content table{
+  margin-top: 80px;
+}
+
+.content form{
+  font-weight: bold;
+}
+
+.header{
+padding: 40px;
+margin-top: 55px;
+color: white;
+text-align: center;
+}
+
+.wrapper{
+  display: flex;
+  margin-top: 25px;
+
+}
+.menu{
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-right: 25px;
+  color: white;
+
+  
+
+}
+.menu div{
+  padding: 20px;
+  font-size: 1.5rem;
+}
+
+.menu a{
+  text-decoration: none;
+  color: white;
+}
+
+.page{
+  display: flex;
+  flex: 3;
+  justify-content: center;
+}
+.list{
+  width: 100%;
+}
+
+section {
+  width: 100%;
+}
+
+.pagination{
+  justify-content: center;
+}
+
+.delete{
+  font-weight: bold;
+}
+
+.edit{
+  margin-top: 30px;
+}
+
+.pagination button{
+  margin: 0px 10px;
+}
+.l_list{
+  margin-left: 12px;
+}
+
+.i_list
+{
+  margin-left: 12px;
+}
+
+.form-control{
+  width: 40%;
+}
+
+.show{
+  font-weight: bold;
+}
+
+.footer{
+  text-align: center;
+  padding: 15px;
+  margin-top: 200px;
+  color: white;
+}
+
+.login{
+  width: 500px;
+  padding: 30px;
+}
+
+.login button{
+  width: 100%;
+}
+
+.login input{
+  width: 100%;
+}
+
+
+.login {
+  margin-top: 100px;
+}
+
+.register{
+  width: 500px;
+  padding: 30px;
+}
+
+.register button{
+  width: 100%;
+}
+
+.register input{
+  width: 100%;
+}
+
+.register {
+  margin-top: 100px;
+}
+
+.error{
+  text-align: center;
+  color: red;
+}
+
+
+@media (max-width: 768px){
+  .wrapper{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .form-control{
+    width: 100%;
+  }
+  .page{
+    margin-top: 45px;
+  }
+
+}
