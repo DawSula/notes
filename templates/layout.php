@@ -45,7 +45,7 @@
 
 
             <div class="footer bg-secondary">
-                <p>Notatki - projekt w kursie PHP</p>
+                <p>Notatki</p>
             </div>
     </div>
 
