@@ -40,7 +40,8 @@ class NoteModel extends AbstractModel implements ModelInterface
     {
         $phrase = $this->conn->quote('%' . $phrase . '%', PDO::PARAM_STR);
         try {
-            $query = "SELECT count(*) as cn FROM notes3 WHERE title LIKE($phrase)";
+            $idUser = $_SESSION['id'];
+            $query = "SELECT count(*) as cn FROM notes3 WHERE title LIKE($phrase) and user_id = $idUser ";
             $result = $this->conn->query($query);
 
             $result = $result->fetch(PDO::FETCH_ASSOC);
@@ -76,7 +77,8 @@ class NoteModel extends AbstractModel implements ModelInterface
     public function get(int $id): array
     {
         try {
-            $query = "SELECT * FROM notes3 WHERE id = $id";
+            $idUser = $_SESSION['id'];
+            $query = "SELECT * FROM notes3 WHERE id = $id and user_id=$idUser";
             $result = $this->conn->query($query);
             $note = $result->fetch(PDO::FETCH_ASSOC);
         } catch (Throwable $e) {
@@ -125,7 +127,8 @@ class NoteModel extends AbstractModel implements ModelInterface
     public function delete(int $id): void
     {
         try {
-            $query = "DELETE FROM notes3 WHERE id = $id LIMIT 1";
+            $idUser = $_SESSION['id'];
+            $query = "DELETE FROM notes3 WHERE id = $id and user_id=$idUser LIMIT 1 ";
             $this->conn->exec($query);
         } catch (Throwable $e) {
             throw new StorageException("Nie udało się usunąć notatki", 400, $e);
