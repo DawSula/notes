@@ -21,25 +21,25 @@ use App\Controller\LogController;
 
 $request = new Request($_GET, $_POST, $_SERVER);
 session_start();
-try {
+//try {
   if (!isset($_SESSION['start'])){
       AbstractLogController::initConfiguration($configuration);
       $logController = new LogController($request);
       $logController->run();
 
 
-  } else{
+  } else {
       AbstractController::initConfiguration($configuration);
       (new NoteController($request))->run();
-
   }
-}catch (ConfigurationException $e) {
-  //mail('xxx@xxx.com', 'Errro', $e->getMessage());
-  echo '<h1>Wystąpił błąd w aplikacji</h1>';
-  echo 'Problem z applikacją, proszę spróbować za chwilę.';
- } catch (AppException $e) {
-  echo '<h1>Wystąpił błąd w aplikacji</h1>';
-  echo '<h3>' . $e->getMessage() . '</h3>';
- } catch (\Throwable $e) {
-  echo '<h1>Wystąpił błąd w aplikacji</h1>';
- }
+//  }
+//}catch (ConfigurationException $e) {
+//  //mail('xxx@xxx.com', 'Errro', $e->getMessage());
+//  echo '<h1>Wystąpił błąd w aplikacji</h1>';
+//  echo 'Problem z applikacją, proszę spróbować za chwilę.';
+// } catch (AppException $e) {
+//  echo '<h1>Wystąpił błąd w aplikacji</h1>';
+//  echo '<h3>' . $e->getMessage() . '</h3>';
+// } catch (\Throwable $e) {
+//  echo '<h1>Wystąpił błąd w aplikacji</h1>';
+// }

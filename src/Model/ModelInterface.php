@@ -25,7 +25,7 @@ interface ModelInterface
 
   public function searchCount(string $phrase): int;
 
-  public function get(): array;
+  public function get(int $id): array;
 
   public function create(array $data): void;
 
