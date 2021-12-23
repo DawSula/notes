@@ -1,6 +1,8 @@
 # notes
 Aplikacja z systemem rejestracji pozwalająca zalogowanym użytkownikom zarządzanie notatkami. 
 
+Aplikację można przetestować na https://test-app-notes.herokuapp.com/
+
 Aby otworzyć trzeba skonfigurować hosta dla xampp, skonfigurować bazy danych - jak w config.php lub zmienić na swoje dane. 
 Baza danych działa na tabelach notes3 i users które trzeba utworzyć:
 
