@@ -50,9 +50,4 @@ abstract class AbstractController
     header("Location: $location");
     exit;
   }
-
-  // protected function action(): string
-  // {
-  //   return $this->request->getParam('action', self::DEFAULT_ACTION);
-  // }
 }
