@@ -7,19 +7,13 @@ namespace App\Controller;
 use App\Request;
 use App\View;
 use App\Exception\ConfigurationException;
-use App\Exception\NotFoundException;
-use App\Exception\StorageException;
-use App\Model\NoteModel;
 
 abstract class AbstractController
 {
-  protected const DEFAULT_ACTION = 'list';
-
-  private static array $configuration = [];
-
-  protected NoteModel $noteModel;
+  protected static array $configuration = [];
   protected Request $request;
   protected View $view;
+  
 
   public static function initConfiguration(array $configuration): void
   {
@@ -31,29 +25,16 @@ abstract class AbstractController
     if (empty(self::$configuration['db'])) {
       throw new ConfigurationException('Configuration error');
     }
-    $this->noteModel = new NoteModel(self::$configuration['db']);
-
     $this->request = $request;
     $this->view = new View();
   }
 
-  final public function run(): void
-  {
-    try {
-      $action = $this->action() . 'Action';
-      if (!method_exists($this, $action)) {
-        $action = self::DEFAULT_ACTION . 'Action';
-      }
-      $this->$action();
-    } catch (StorageException $e) {
-      // Log::error($e->getPrevios());
-      $this->view->render('error', ['message' => $e->getMessage()]);
-    } catch (NotFoundException $e) {
-      $this->redirect('/', ['error' => 'noteNotFound']);
-    }
-  }
 
-  final protected function redirect(string $to, array $params): void
+  abstract public function run(): void;
+
+  abstract protected function action(): string;
+  
+  protected function redirect(string $to, array $params): void
   {
     $location = $to;
 
@@ -70,8 +51,8 @@ abstract class AbstractController
     exit;
   }
 
-  final private function action(): string
-  {
-    return $this->request->getParam('action', self::DEFAULT_ACTION);
-  }
+  // protected function action(): string
+  // {
+  //   return $this->request->getParam('action', self::DEFAULT_ACTION);
+  // }
 }

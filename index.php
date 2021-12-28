@@ -1,5 +1,7 @@
 <?php
 
+
+
 declare(strict_types=1);
 
 spl_autoload_register(function (string $classNamespace) {
@@ -16,22 +18,19 @@ use App\Controller\NoteController;
 use App\Request;
 use App\Exception\AppException;
 use App\Exception\ConfigurationException;
-use App\Controller\AbstractLogController;
 use App\Controller\LogController;
 
 $request = new Request($_GET, $_POST, $_SERVER);
 session_start();
+AbstractController::initConfiguration($configuration);
+
 try {
     if (!isset($_SESSION['start'])) {
-        AbstractLogController::initConfiguration($configuration);
-        $logController = new LogController($request);
-        $logController->run();
-
-
+        (new LogController($request))->run();
     } else {
-        AbstractController::initConfiguration($configuration);
         (new NoteController($request))->run();
     }
+    
 } catch (ConfigurationException $e) {
     echo '<h1>Wystąpił błąd w aplikacji</h1>';
     echo 'Problem z applikacją';

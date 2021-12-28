@@ -1,7 +1,5 @@
 
 
-
-
 <div class="register">
     <form action="?action=register" method="post">
         <div class="mb-3">
@@ -38,6 +36,9 @@
                 break;
             case 'userExist':
                 echo "Użytkownik o podanej nazwie istnieje";
+                break;
+            case 'passwordNotEnoughStrong':
+                echo "Hasło powinno mieć przynajmniej 8 znaków zawierające 1 dużą literę, 1 numer, 1 znak specjalny ";
                 break;
         };
         endif ?>

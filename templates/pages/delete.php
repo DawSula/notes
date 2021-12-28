@@ -2,7 +2,6 @@
     <div class="delete">
         <?php $note = $params['note'] ?? null; ?>
         <?php if ($note) : ?>
-            <div class="mb-3">ID: <?php echo  $note['id'] ?></div>
             <div class="mb-3">Tytuł: <?php echo $note['title'] ?></div>
             <div class="mb-3"><?php echo $note['description'] ?></div>
             <div class="mb-3">Utworzono: <?php echo $note['created'] ?></div>

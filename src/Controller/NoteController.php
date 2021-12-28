@@ -3,10 +3,47 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+use App\Exception\NotFoundException;
+use App\Exception\StorageException;
+use App\Model\NoteModel;
+use App\Request;
 
 class NoteController extends AbstractController
 {
+  private const DEFAULT_ACTION = 'list';
   private const PAGE_SIZE = 10;
+  protected NoteModel $noteModel;
+  
+  
+
+  public function __construct(Request $request)
+  {
+    parent::__construct($request);
+    $this->noteModel = new NoteModel(parent::$configuration['db']);
+  }
+
+
+  public function run(): void
+  {
+    try {
+      $action = $this->action() . 'Action';
+      if (!method_exists($this, $action)) {
+        $action = self::DEFAULT_ACTION . 'Action';
+      }
+      $this->$action();
+    } catch (StorageException $e) {
+      $this->view->render('error', ['message' => $e->getMessage()]);
+    } catch (NotFoundException $e) {
+      $this->redirect('/', ['error' => 'noteNotFound']);
+    }
+  }
+
+  protected function action(): string
+  {
+    return $this->request->getParam('action', self::DEFAULT_ACTION);
+  }
+
+  
 
   public function createAction(): void
   {
@@ -116,7 +153,7 @@ class NoteController extends AbstractController
 
 
 
-  final private function getNote(): array
+  private function getNote(): array
   {
     $noteId = (int) $this->request->getParam('id');
     if (!$noteId) {

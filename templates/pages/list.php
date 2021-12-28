@@ -98,7 +98,6 @@
             <table class="table table-dark">
                 <thead>
                 <tr>
-                    <th scope="col">Id</th>
                     <th scope="col">Tytuł</th>
                     <th scope="col">Data</th>
                     <th scope="col">Opcje</th>
@@ -108,7 +107,7 @@
 
                 <?php foreach ($params['notes'] ?? [] as $note) : ?>
                     <tr class="table-light">
-                        <th scope="row"><?php echo $note['id'] ?></td>
+
                         <td><?php echo $note['title'] ?></td>
                         <td><?php echo $note['created'] ?></td>
                         <td>
